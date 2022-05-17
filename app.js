@@ -1,18 +1,36 @@
+const aplicacion = document.querySelector('.container');
 
-const API_URL = 'https://jsonplaceholder.typicode.com';
+const url = 'https://jsonplaceholder.typicode.com/users';
 
-const HTMLresponse= document.querySelector('#app');
+fetch(url)
+.then(res => res.json())
+.then((data) =>{
+  data.forEach(usuario => {
+
+    console.log(usuario.name)
+    const p = document.createElement('p')
+    p.innerHTML = usuario.name
+    aplicacion.appendChild(p)    
+  });
+
+console.log(data) }) 
+.catch(err => console.log(err))
 
 
-fetch('${API_URL}/users')
-.then((response) => response.json())
-.then((users) => {
+//const API_URL = 'https://jsonplaceholder.typicode.com';
 
-  const tpl = users.map(user => '<li>${user.name} ${user.email}</li>');
-  HTMLresponse.innerHTML = '<ul>${tpl}</ul>'
+//const HTMLresponse= document.querySelector('#app');
+
+
+//fetch('${API_URL}/users')
+//.then((response) => response.json())
+//.then((users) => {
+
+  //const tpl = users.map(user => '<li>${user.name} ${user.email}</li>');
+  //HTMLresponse.innerHTML = '<ul>${tpl}</ul>'
   
 
-});
+//});
 
 
 
